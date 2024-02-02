@@ -1,0 +1,34 @@
+-Afficher la liste de tous les membres
+
+SELECT *
+FROM Membres
+
+-Afficher la liste des membres actifs
+
+SELECT Membres.*
+FROM Membres, Cotisation
+WHERE Membres.idmembre=Cotisation.idmembre
+AND Cotisation.mois='Janvier,Fevrier,Mars,Avril,Mai,Juin,Juillet,Aout'
+
+-Afficher la liste des membres non actifs
+
+SELECT Membres.*
+FROM Membres, Cotisation
+WHERE Membres.idmembre=Cotisation.idmembre
+AND Cotisation.mois<>'Janvier,Fevrier,Mars,Avril,Mai,Juin,Juillet,Aout'
+
+-Afficher les options d’abonnement avec les possibilités offertes(soit accès machines, soit ateliers, soit assistance, ou le tout)
+
+SELECT Membres.*, Abonnement.typedabonnement
+FROM Membres, Cotisation, Abonnement
+WHERE Cotisation.idcotisation=Abonnement.idcotisation
+AND Membres.idmembre=Cotisation.idmembre
+
+-Enregistrer une adhésion
+
+INSERT INTO `Membres`(`idmembre`, `nom`, `prenom`, `numtel`, `email`, `profession`, `adresse`, `photo`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]','[value-6]','[value-7]','[value-8]')
+
+-Enregistrer le paiement d’une adhésion
+
+INSERT INTO `Adhesion`(`idadhesion`, `datedahdesion`, `fraisdadhesionunique`, `idmembre`) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]')
+
